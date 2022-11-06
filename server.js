@@ -4,6 +4,8 @@ const app = express ();
 
 const path = require ('path');
 
+const data = require('./db/db.json'); 
+
 app.use(express.static('public'));
 
 // app.get('/', (request, response) => {
@@ -21,7 +23,12 @@ app.get('/notes', (request, response) => {
     response.sendFile(path.resolve(__dirname, './public/notes.html'));
 });
 
+app.get('/api/notes', (request, response) => {
+    response.json(data);
+});
+
 // listen takes a port first then a callback function
 app.listen(3001, () => {
     console.log('App now running on http://localhost:3001/');
 });
+
